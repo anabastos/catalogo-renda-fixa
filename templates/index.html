@@ -29,36 +29,26 @@
 			</div>
 		</header>
 		<main class="mdl-layout__content">
-			<div class="page-content">
-				<form role="form">
-					<div class="mdl-grid">
-						<div class="mdl-cell mdl-cell--3-col">
+			<div class="page-content mdl-grid">
+				<form role="form" class="formContainer mdl-cell mdl-cell--6-col">
+				<h6>	Adicionar ao catalogo</h6>
 							<div class="mdl-textfield mdl-js-textfield">
 								<input class="mdl-textfield__input" ng-model="form.nome" type="text" id="nome">
 								<label class="mdl-textfield__label" for="nome">Nome...</label>
 							</div>
-						</div>
-						<div class="mdl-cell mdl-cell--3-col">
 							<div class="mdl-textfield mdl-js-textfield">
 								<input class="mdl-textfield__input" ng-model="form.email" type="text" id="email">
 								<label class="mdl-textfield__label" for="email">E-mail...</label>
 							</div>
-						</div>
-						<div class="mdl-cell mdl-cell--3-col">
 							<div class="mdl-textfield mdl-js-textfield">
 								<input class="mdl-textfield__input" ng-model="form.telefone" type="text" pattern="[0-9]*" id="telefone">
 								<label class="mdl-textfield__label" for="telefone">Telefone...</label>
 								<span class="mdl-textfield__error">Apenas numeros</span>
 							</div>
-						</div>
-						<div class="mdl-cell mdl-cell--3-col">
 							<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" id="submit" ng-click="addRecord()"></input>
-						</div>
-					
-					</div>
 				</form>
-				<div id="lista">
-					<h3>Lista</h3>
+				<div class="listaContainer mdl-cell mdl-cell--6-col">
+					<h6>Lista</h6>
 					<table class="mdl-data-table">
 						<thead>
 							<tr>
