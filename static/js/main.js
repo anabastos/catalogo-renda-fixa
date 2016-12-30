@@ -7,7 +7,7 @@ myApp.controller('CatalogoCtrl',
 		$scope.addRecord = function(){
 			$http({
 				method: 'POST',
-				url: '/add_record',
+				url: '/insert_record',
 				data: {
 					form: $scope.form
 				}

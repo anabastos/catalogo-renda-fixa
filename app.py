@@ -1,15 +1,11 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, json
 from pymongo import MongoClient
-import requests, json
+
 
 app = Flask(__name__, static_url_path='/static')
 
 client = MongoClient('localhost:27017')
 db = client.teste_db
-# app.config['MONGO_DBNAME'] = 'test_db'
-# app.config['MONGO_URI'] = 'mongodb://localhost:27017/db'
-
-# mongo = PyMongo(app)
 
 @app.route('/', methods=['GET'])
 def mostrarContatos():
@@ -28,23 +24,24 @@ def mostrarContatos():
 def get_records():
 	try:
 		catalogo_db = db.catalogo.find()
-		output = []
+		catalogo_list = []
 		for pessoa in catalogo_db:
-			output.append({
+			catalogo_list.append({
 					'nome': pessoa['nome'],
 					'email': pessoa['email'],
 					'telefone': pessoa['telefone']
 			})
 	except Exception, e:
 		return jsonify(status='error', message=str(e))
-	return json.dumps(output)
+	return json.dumps(catalogo_list)
 
-@app.route('/add_record', methods=['POST'])
-def add_record():
+@app.route('/insert_record', methods=['POST'])
+def insert_record():
 	try:
-		nome = 'nome'
-		email = 'email'
-		telefone = 'telefone'
+		json_data = request.json['form']
+		nome = json_data['nome']
+		email = json_data['email']
+		telefone = json_data['telefone']
 		pessoa_id = db.catalogo.insert_one({
 			'nome': nome, 'email': email, 'telefone': telefone
 			})
