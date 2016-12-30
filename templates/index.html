@@ -30,33 +30,33 @@
 		</header>
 		<main class="mdl-layout__content">
 			<div class="page-content">
-				<div class="mdl-grid">
-					<form role="form" ng-submit="getNewPerson()">
+				<form role="form">
+					<div class="mdl-grid">
 						<div class="mdl-cell mdl-cell--3-col">
 							<div class="mdl-textfield mdl-js-textfield">
-								<input class="mdl-textfield__input" type="text" id="nome">
+								<input class="mdl-textfield__input" ng-model="form.nome" type="text" id="nome">
 								<label class="mdl-textfield__label" for="nome">Nome...</label>
 							</div>
 						</div>
 						<div class="mdl-cell mdl-cell--3-col">
 							<div class="mdl-textfield mdl-js-textfield">
-								<input class="mdl-textfield__input" type="text" id="email">
+								<input class="mdl-textfield__input" ng-model="form.email" type="text" id="email">
 								<label class="mdl-textfield__label" for="email">E-mail...</label>
 							</div>
 						</div>
 						<div class="mdl-cell mdl-cell--3-col">
 							<div class="mdl-textfield mdl-js-textfield">
-								<input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="telefone">
+								<input class="mdl-textfield__input" ng-model="form.telefone" type="text" pattern="[0-9]*" id="telefone">
 								<label class="mdl-textfield__label" for="telefone">Telefone...</label>
 								<span class="mdl-textfield__error">Apenas numeros</span>
 							</div>
 						</div>
 						<div class="mdl-cell mdl-cell--3-col">
-							<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" id="submit"></input>
+							<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" id="submit" ng-click="addRecord()"></input>
 						</div>
-					</form>
-				</div>
-
+					
+					</div>
+				</form>
 				<div id="lista">
 					<h3>Lista</h3>
 					<table class="mdl-data-table">
@@ -67,16 +67,11 @@
 								<th class="mdl-data-table__cell--non-numeric">Telefone</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Ana Luiza</td>
-								<td class="mdl-data-table__cell--non-numeric">analui_95@hotmail.com</td>
-								<td>11 986993010</td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Ana Luiza</td>
-								<td class="mdl-data-table__cell--non-numeric">analui_95@hotmail.com</td>
-								<td>11 986993010</td>
+						<tbody ng-view>
+							<tr ng-repeat="pessoa in catalogo">
+								<td class="mdl-data-table__cell--non-numeric">//pessoa['nome']//</td>
+								<td class="mdl-data-table__cell--non-numeric">//pessoa['email']//</td>
+								<td>//pessoa['telefone']//</td>
 							</tr>
 						</tbody>
 					</table>

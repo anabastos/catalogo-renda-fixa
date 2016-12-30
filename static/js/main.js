@@ -1,17 +1,38 @@
+'use strict'
 
-(function () {
+let myApp = angular.module('CatalogoApp', [])
 
-  'use strict';
+myApp.controller('CatalogoCtrl', 
+	function($scope, $http) {
+		$scope.addRecord = function(){
+			$http({
+				method: 'POST',
+				url: '/add_record',
+				data: {
+					form: $scope.form
+				}
+			}).then(function(response) {
+				$scope.show_catalogo()
+			}, function(error) {
+				console.log(error)
+			})
+		}
 
-  angular.module('CatalogoApp', [])
+		$scope.show_catalogo = function() {
+			$http({
+				method: 'GET',
+				url: '/get_records'
+			}).then(function(response) {
+				$scope.catalogo = response.data
+				console.log("lala", $scope.catalogo)
+			}, function(error) {
+				console.log(error)
+			})
+		}
 
-  .controller('CatalogoCtrl', ['$scope', '$log',
-    function($scope, $log) {
-    $scope.getNewPerson = function() {
-      $log.log("test");
-    };
-  }
-
-  ]);
-
-}());
+		$scope.show_catalogo()
+	}
+)
+.config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('//').endSymbol('//')
+    })
