@@ -9,14 +9,13 @@ db = client.teste_db
 
 @app.route('/', methods=['GET'])
 def mostrarContatos():
-	# db.catalogo.drop()
 
 	catalogo = get_records();
-	if (catalogo.count == 0):
-			db.catalogo.insert_many([
-				{'nome': 'Lucas', 'email': 'lucas@gmail.com', 'telefone': '11 99389-3244'},
-				{'nome': 'Lara', 'email': 'lara@gmail.com', 'telefone': '11 99333-3556'}
-			])
+	if db.catalogo.count(0) == 0:
+		db.catalogo.insert_many([
+			{'nome': 'Lucas', 'email': 'lucas@gmail.com', 'telefone': '11 99389-3244'},
+			{'nome': 'Lara', 'email': 'lara@gmail.com', 'telefone': '11 99333-3556'}
+		])
 	
 	return render_template('index.html', catalogo=catalogo)
 

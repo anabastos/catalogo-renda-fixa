@@ -12,6 +12,7 @@ myApp.controller('CatalogoCtrl',
 					form: $scope.form
 				}
 			}).then(function(response) {
+				$scope.show_catalogo()
 			}, function(error) {
 				console.log(error)
 			})
